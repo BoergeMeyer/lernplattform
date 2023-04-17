@@ -72,6 +72,21 @@
                     </div>
                 </div>
               </a>
+
+              <button type="button" class="nav-link d-flex" v-if="$store.state.user" @click="$store.dispatch('logout')" >
+                <div class="container text-center">
+                    <div class="row align-items-start">
+                        <div class="col p-0">
+                          <span class="material-symbols-outlined">
+                            logout
+                            </span>
+                        </div>
+                        <div class="col fw-bold">
+                            Logout                           
+                        </div>
+                    </div>
+                </div>
+              </button>
               <a class="nav-link d-flex" href="register.html">
                 <div class="container text-center">
                   <div class="row align-items-start">
@@ -91,7 +106,7 @@
       </nav> 
     </div>
 
-    <div class="container-fluid" style="height: 100%; background-image: url('../../public/header.png'); background-size: cover;">
+    <div class="container-fluid" style="height: 100%; background-image: url('header.png');">
       <div class="position-absolute" style="top: 25%; left: 25px;">
         <p class="text-start fw-bold" style="color: 002B5C; font-size: 75px;">
           Lorem Ipsum <br>
@@ -152,3 +167,20 @@
 </body>
 </template>
 
+<script>
+
+import { onBeforeMount } from "vue";
+import { useStore } from "vuex";
+
+export default {
+
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+  }
+}
+
+</script>
